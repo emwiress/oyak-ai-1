@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.env
+vocab.pkl
+chroma_db/

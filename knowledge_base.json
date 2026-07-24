@@ -1,0 +1,72 @@
+[
+  {
+    "id": "vezne-saatleri",
+    "baslik": "Vezne Çalışma Saatleri",
+    "metin": "ÖYAK vezne saatleri mevsime göre değişir. Mayıs-Eylül döneminde: Pazartesi, Salı, Çarşamba ve Cuma günleri 07:45-13:15 arası; Perşembe günleri 07:45-13:00 ve 13:45-16:15 arası açıktır. Ekim-Nisan döneminde: Pazartesi-Cuma arası 08:15-13:00 ve 13:45-15:45 arası açıktır."
+  },
+  {
+    "id": "sube-lefkosa-merkez",
+    "baslik": "Lefkoşa Genel Müdürlük - Merkez Şube",
+    "metin": "ÖYAK Lefkoşa Genel Müdürlük Merkez Şube adresi: Bolu Sokak, K. Kaymaklı, Lefkoşa. Telefon: 227 61 17."
+  },
+  {
+    "id": "sube-lefkosa-metehan",
+    "baslik": "Lefkoşa Metehan Şubesi",
+    "metin": "ÖYAK Lefkoşa Metehan Şubesi adresi: Kemal Şemiler Caddesi, Metehan, Lefkoşa. Telefon: 223 36 10."
+  },
+  {
+    "id": "sube-guzelyurt",
+    "baslik": "Güzelyurt Şubesi",
+    "metin": "ÖYAK Güzelyurt Şubesi adresi: Kutlu Adalı Bulvarı No:14, Terminal Yanı, Güzelyurt. Telefon: 714 52 29."
+  },
+  {
+    "id": "sube-girne",
+    "baslik": "Girne Şubesi",
+    "metin": "ÖYAK Girne Şubesi adresi: İskenderun Caddesi, Metform Plaza D Blok No:5, Girne. Telefon: 815 60 14."
+  },
+  {
+    "id": "sube-magusa",
+    "baslik": "Gazi Mağusa Şubesi",
+    "metin": "ÖYAK Gazi Mağusa Şubesi adresi: Sky Life Apt. Dükkan 1, Bayraktar Yolu, Baykal, Gazi Mağusa. Telefon: 366 51 55."
+  },
+  {
+    "id": "sube-iskele",
+    "baslik": "İskele Şubesi",
+    "metin": "ÖYAK İskele Şubesi adresi: Kordonboyu Caddesi, No:35E, Bahçeler, İskele. Telefon: 371 37 66."
+  },
+  {
+    "id": "iletisim-kanallari",
+    "baslik": "İletişim Kanalları",
+    "metin": "ÖYAK'a e-posta ile oyak@oyakkoop.com adresinden, WhatsApp Hattı üzerinden 0533 850 33 12 numarasından, SMS Hattı üzerinden 0533 876 75 88 numarasından ulaşılabilir."
+  },
+  {
+    "id": "mevduat-genel",
+    "baslik": "Mevduat Hesapları Genel Bilgi",
+    "metin": "ÖYAK'ta vadeli mevduat, belli bir süre için faiz kazanmak amacıyla para yatırılan mevduat türüdür ve vadesiz mevduata göre daha yüksek faiz oranı sunar. 1 ay, 3 ay, 6 ay, 1 yıl vadeli ve gelecek güvencesi adı verilen 3-5 yıl vadeli mevduat hesapları açılabilir. Vadesi dolmadan para çekilirse vadesiz mevduat faizi uygulanır. Mecburi Aylık Yatırım (MAY) hesabı, ÖYAK ana sözleşmesi gereği her üyenin zorunlu olarak para yatırdığı hesap türüdür ve bu hesaplara her yıl 31 Aralık itibarıyla faiz verilir."
+  },
+  {
+    "id": "kredi-genel",
+    "baslik": "Kredi Hesapları Genel Bilgi",
+    "metin": "ÖYAK üyelerine çeşitli vadelerde kredi imkanı sunar. Kredi başvurusu için Kredi Dilekçesi formunun doldurulması gerekir. Güncel kredi faiz oranları ve taksit hesaplama araçları resmi web sitesinde yer alır."
+  },
+  {
+    "id": "sigorta",
+    "baslik": "Sigorta Hizmetleri",
+    "metin": "ÖYAK üyelerine sigorta hizmetleri sunmaktadır; detaylı bilgi için sigorta sayfası ziyaret edilebilir."
+  },
+  {
+    "id": "uyelik",
+    "baslik": "Üyelik İşlemleri",
+    "metin": "ÖYAK'a üye olmak için Üyeliğe Başvuru formu doldurulmalıdır. Mevcut üyeler bilgi güncellemesi için Üyelik Güncelleme formunu kullanabilir."
+  },
+  {
+    "id": "mobil-uygulama",
+    "baslik": "ÖYAK Cep Mobil Uygulaması",
+    "metin": "ÖYAK Cep mobil uygulaması Google Play ve App Store üzerinden indirilebilir; üyeler mobil uygulama üzerinden bankacılık işlemlerini takip edebilir."
+  },
+  {
+    "id": "tarihce",
+    "baslik": "ÖYAK Tarihçesi",
+    "metin": "Kıbrıs Türk Öğretmenler Yardımlaşma Kooperatifi Ltd. (ÖYAK), Kıbrıs Türk öğretmenlerine yönelik kurulmuş bir kooperatif bankacılık kuruluşudur. Detaylı tarihçe bilgisi resmi web sitesindeki Tarihçe sayfasında yer alır."
+  }
+]
