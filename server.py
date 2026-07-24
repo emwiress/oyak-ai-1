@@ -1,8 +1,6 @@
 from flask import Flask, request, jsonify, Response, stream_with_context
 from flask_cors import CORS
-from embed import embed
 import requests
-import chromadb
 import json
 import os
 import re
@@ -15,8 +13,17 @@ GROQ_URL     = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL   = "llama-3.1-8b-instant"
 N_RESULTS    = 2
 
-client     = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_collection("oyak_kb")
+# Veritabanı — hata olursa sessizce devam et
+try:
+    import chromadb
+    from embed import embed
+    client     = chromadb.PersistentClient(path="./chroma_db")
+    collection = client.get_collection("oyak_kb")
+    print("Veritabanı bağlandı.")
+except Exception as e:
+    print(f"Veritabanı hatası: {e}")
+    client     = None
+    collection = None
 
 SYSTEM_PROMPT = """Sen ÖYAK (Kıbrıs Türk Öğretmenler Yardımlaşma Kooperatifi Ltd.) için çalışan resmi dijital asistansın.
 
@@ -107,7 +114,6 @@ def mevduat_hesapla(soru):
     tablo = ORANLAR.get(birim, ORANLAR['TL'])
     vade_tablo = tablo.get(en_yakin_vade, list(tablo.values())[0])
     oran = next(o for (sinir, o) in vade_tablo if tutar <= sinir)
-
     brut   = tutar * (oran / 100) * (vade / 12)
     stopaj = brut * 0.25
     net    = brut - stopaj
@@ -143,7 +149,6 @@ def kredi_hesapla(soru):
     en_yakin = min(vadeler, key=lambda x: abs(x - vade))
     tablo = KREDI_ORANLARI.get(birim, KREDI_ORANLARI['TL'])
     oran = tablo.get(en_yakin, list(tablo.values())[-1])
-
     aylik_oran = (oran / 100) / 12
     taksit = (tutar * aylik_oran) / (1 - (1 + aylik_oran) ** -vade) if aylik_oran else tutar / vade
     toplam = taksit * vade
@@ -171,10 +176,16 @@ def groq_headers():
     return {"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"}
 
 def retrieve_context(question):
-    q_emb = embed(question)
-    results = collection.query(query_embeddings=[q_emb], n_results=N_RESULTS)
-    docs = results["documents"][0] if results["documents"] else []
-    return "\n\n".join(docs)
+    if collection is None:
+        return ""
+    try:
+        q_emb = embed(question)
+        results = collection.query(query_embeddings=[q_emb], n_results=N_RESULTS)
+        docs = results["documents"][0] if results["documents"] else []
+        return "\n\n".join(docs)
+    except Exception as e:
+        print(f"Arama hatası: {e}")
+        return ""
 
 def generate_answer(question, context):
     resp = requests.post(GROQ_URL, headers=groq_headers(), json={
@@ -210,6 +221,14 @@ def generate_stream(question, context):
                     token = chunk["choices"][0]["delta"].get("content", "")
                     yield f"data: {json.dumps({'token':token,'done':False})}\n\n"
                 except: pass
+
+@app.route("/saglik")
+def saglik():
+    return jsonify({"durum": "calisiyor", "model": GROQ_MODEL, "db": "bagli" if collection else "yok"})
+
+@app.route("/")
+def index():
+    return "<h2>ÖYAK AI API çalışıyor.</h2><p>Widget için: <code>&lt;script src='/widget.js'&gt;&lt;/script&gt;</code></p>"
 
 @app.route("/ask", methods=["POST"])
 def ask():
@@ -248,7 +267,6 @@ def ask_stream():
         if niyet == 'mevduat' and tutar and vade:
             s = mevduat_hesapla(question)
             if s: return Response(stream_with_context(tek_parca(s)), mimetype="text/event-stream", headers={"Cache-Control":"no-cache"})
-
         if niyet == 'kredi' and tutar and vade:
             s = kredi_hesapla(question)
             if s: return Response(stream_with_context(tek_parca(s)), mimetype="text/event-stream", headers={"Cache-Control":"no-cache"})
@@ -371,14 +389,6 @@ def widget():
     if request.headers.get('X-Forwarded-Proto') == 'https':
         sunucu = 'https://' + request.host
     return Response(WIDGET_JS.replace('__SUNUCU__', sunucu), mimetype='application/javascript')
-
-@app.route("/saglik")
-def saglik():
-    return jsonify({"durum": "calisiyor", "model": GROQ_MODEL})
-
-@app.route("/")
-def index():
-    return "<h2>ÖYAK AI API çalışıyor.</h2><p>Widget için: <code>&lt;script src='/widget.js'&gt;&lt;/script&gt;</code></p>"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False, threaded=True)
