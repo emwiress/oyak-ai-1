@@ -1,72 +1,117 @@
 [
   {
-    "id": "vezne-saatleri",
+    "id": "sb_temel_bilgi",
+    "baslik": "ÖYAK Temel Bilgiler ve Kuruluş",
+    "metin": "ÖYAK (Kıbrıs Türk Öğretmenler Yardımlaşma Kooperatifi Ltd.) 5 Temmuz 1978 tarihinde 64 kurucu öğretmenin imzasıyla kurulmuştur. Genel iletişim: E-mail: oyak@oyakkoop.com, WhatsApp Hattı: 0533 850 33 12, SMS Hattı: 0533 876 75 88."
+  },
+  {
+    "id": "sb_subeler",
+    "baslik": "Şube Adresleri ve Telefon Numaraları",
+    "metin": "Lefkoşa Genel Müdürlük Merkez Şube: Tel: 227 61 17, Adres: Bolu Sokak K.Kaymaklı Lefkoşa. Lefkoşa Metehan: Tel: 223 36 10, Adres: Kemal Şemiler Caddesi Metehan Lefkoşa. Güzelyurt: Tel: 714 52 29, Adres: Kutlu Adalı Bulvarı No:14 Terminal Yanı Güzelyurt. Girne: Tel: 815 60 14, Adres: İskenderun Caddesi Metform Plaza D Blok No:5 Girne. Gazi Mağusa: Tel: 366 51 55, Adres: Sky Life Apt. Dükkan 1 Bayraktar Yolu Baykal Gazi Mağusa. İskele: Tel: 371 37 66, Adres: Kordonboyu Caddesi No:35E Bahçeler İskele."
+  },
+  {
+    "id": "sb_vezne",
     "baslik": "Vezne Çalışma Saatleri",
-    "metin": "ÖYAK vezne saatleri mevsime göre değişir. Mayıs-Eylül döneminde: Pazartesi, Salı, Çarşamba ve Cuma günleri 07:45-13:15 arası; Perşembe günleri 07:45-13:00 ve 13:45-16:15 arası açıktır. Ekim-Nisan döneminde: Pazartesi-Cuma arası 08:15-13:00 ve 13:45-15:45 arası açıktır."
+    "metin": "Yaz Dönemi Mayıs-Eylül: Pazartesi Salı Çarşamba Cuma 07:45-13:15, Perşembe 07:45-13:00 ve 13:45-16:15. Kış Dönemi Ekim-Nisan: Pazartesi-Cuma 08:15-13:00 ve 13:45-15:45. Uygulama tarihleri Mayıs ve Ekim aylarının ilk Pazartesi günleri itibarıyla başlar."
   },
   {
-    "id": "sube-lefkosa-merkez",
-    "baslik": "Lefkoşa Genel Müdürlük - Merkez Şube",
-    "metin": "ÖYAK Lefkoşa Genel Müdürlük Merkez Şube adresi: Bolu Sokak, K. Kaymaklı, Lefkoşa. Telefon: 227 61 17."
+    "id": "sb_uban",
+    "baslik": "KOOPBANK Hesap ve UBAN Numaraları",
+    "metin": "ÖYAK KOOPBANK Merkez Şube hesap numaraları: TL Hesap No: 112483, UBAN: CT211200001 0000 0000 000 112483. STG Hesap No: 227545, UBAN: CT631200001 0000 0000 000 227545. USD Hesap No: 227546, UBAN: CT361200001 0000 0000 000 227546. EUR Hesap No: 227568, UBAN: CT241200001 0000 0000 000 227568."
   },
   {
-    "id": "sube-lefkosa-metehan",
-    "baslik": "Lefkoşa Metehan Şubesi",
-    "metin": "ÖYAK Lefkoşa Metehan Şubesi adresi: Kemal Şemiler Caddesi, Metehan, Lefkoşa. Telefon: 223 36 10."
+    "id": "sb_mevduat_turleri",
+    "baslik": "Mevduat Hesabı Türleri",
+    "metin": "Vadesiz Mevduat: Para yatırma çekme ve otomatik ödeme imkanı sunar, her yıl 31 Aralık'ta faiz verilir, borca geçemez. Çek Hesabı: Çek defteri talep edilebilir, maaştan kalan miktar kadar borca geçilebilir, 30 Haziran ve 31 Aralık'ta faiz uygulanır. Vadeli Mevduat: 1 ay 3 ay 6 ay 1 yıl ve 3-5 yıl vadeli Gelecek Güvencesi hesapları mevcuttur, erken çekimlerde vadesiz faizi uygulanır. Mecburi Aylık Yatırım MAY: Zorunlu birikim hesabıdır, 31 Aralık'ta faizlenir, çalışanlar 10 yılda yüzde ellisini emekliler 3 yılda bir yüzde seksenini çekebilir."
   },
   {
-    "id": "sube-guzelyurt",
-    "baslik": "Güzelyurt Şubesi",
-    "metin": "ÖYAK Güzelyurt Şubesi adresi: Kutlu Adalı Bulvarı No:14, Terminal Yanı, Güzelyurt. Telefon: 714 52 29."
+    "id": "sb_mevduat_faiz_tl",
+    "baslik": "TL Mevduat Faiz Oranları",
+    "metin": "TL Mevduat Faiz Oranları: 0-199.999 TL için 1 ay %29.50, 3 ay %28.00, 6 ay %27.00, 1 yıl %27.00. 200.000-500.000 TL için 1 ay %31.00, 3 ay %29.50, 6 ay %28.50, 1 yıl %28.50. 500.001-1.000.000 TL için 1 ay %31.50, 3 ay %30.00, 6 ay %29.00, 1 yıl %29.00. 1.000.001-3.000.000 TL için 1 ay %34.00, 3 ay %32.50, 6 ay %31.50, 1 yıl %31.50. 3.000.001-5.000.000 TL için 1 ay %35.00, 3 ay %33.50, 6 ay %32.50, 1 yıl %32.50. 5.000.001-10.000.000 TL için 1 ay %36.00, 3 ay %34.50, 6 ay %33.50, 1 yıl %33.50. 10.000.001 TL ve üzeri için 1 ay %37.00, 3 ay %35.50, 6 ay %34.50, 1 yıl %34.50."
   },
   {
-    "id": "sube-girne",
-    "baslik": "Girne Şubesi",
-    "metin": "ÖYAK Girne Şubesi adresi: İskenderun Caddesi, Metform Plaza D Blok No:5, Girne. Telefon: 815 60 14."
+    "id": "sb_mevduat_faiz_stg",
+    "baslik": "STG Mevduat Faiz Oranları",
+    "metin": "STG Mevduat Faiz Oranları: 0-49.999 STG için 1 ay %0.80, 3 ay %1.10, 6 ay %1.20, 1 yıl %1.30. 50.000-100.000 STG için 1 ay %0.90, 3 ay %1.20, 6 ay %1.30, 1 yıl %1.40. 100.001-150.000 STG için 1 ay %0.95, 3 ay %1.25, 6 ay %1.35, 1 yıl %1.45. 150.001 STG ve üzeri için 1 ay %1.00, 3 ay %1.30, 6 ay %1.40, 1 yıl %1.50."
   },
   {
-    "id": "sube-magusa",
-    "baslik": "Gazi Mağusa Şubesi",
-    "metin": "ÖYAK Gazi Mağusa Şubesi adresi: Sky Life Apt. Dükkan 1, Bayraktar Yolu, Baykal, Gazi Mağusa. Telefon: 366 51 55."
+    "id": "sb_mevduat_faiz_usd",
+    "baslik": "USD Mevduat Faiz Oranları",
+    "metin": "USD Mevduat Faiz Oranları: 0-49.999 USD için 1 ay %1.40, 3 ay %1.60, 6 ay %1.90, 1 yıl %2.45. 50.000-100.000 USD için 1 ay %1.45, 3 ay %1.65, 6 ay %1.95, 1 yıl %2.50. 100.001-150.000 USD için 1 ay %1.50, 3 ay %1.70, 6 ay %2.00, 1 yıl %2.55. 150.001 USD ve üzeri için 1 ay %1.55, 3 ay %1.75, 6 ay %2.05, 1 yıl %2.60."
   },
   {
-    "id": "sube-iskele",
-    "baslik": "İskele Şubesi",
-    "metin": "ÖYAK İskele Şubesi adresi: Kordonboyu Caddesi, No:35E, Bahçeler, İskele. Telefon: 371 37 66."
+    "id": "sb_mevduat_faiz_eur",
+    "baslik": "EUR Mevduat Faiz Oranları",
+    "metin": "EUR Mevduat Faiz Oranları: 0-49.999 EUR için tüm vadeler %0.45. 50.000-100.000 EUR için tüm vadeler %0.50. 100.001-150.000 EUR için tüm vadeler %0.52. 150.001 EUR ve üzeri için tüm vadeler %0.54."
   },
   {
-    "id": "iletisim-kanallari",
-    "baslik": "İletişim Kanalları",
-    "metin": "ÖYAK'a e-posta ile oyak@oyakkoop.com adresinden, WhatsApp Hattı üzerinden 0533 850 33 12 numarasından, SMS Hattı üzerinden 0533 876 75 88 numarasından ulaşılabilir."
+    "id": "sb_kredi_sabit",
+    "baslik": "Sabit Faizli TL Kredi Oranları",
+    "metin": "Sabit faizli TL kredi oranları: 1-12 ay vade %47, 13-24 ay vade %49, 25-48 ay vade %52, 49-60 ay vade %55, Araba Kredisi %54."
   },
   {
-    "id": "mevduat-genel",
-    "baslik": "Mevduat Hesapları Genel Bilgi",
-    "metin": "ÖYAK'ta vadeli mevduat, belli bir süre için faiz kazanmak amacıyla para yatırılan mevduat türüdür ve vadesiz mevduata göre daha yüksek faiz oranı sunar. 1 ay, 3 ay, 6 ay, 1 yıl vadeli ve gelecek güvencesi adı verilen 3-5 yıl vadeli mevduat hesapları açılabilir. Vadesi dolmadan para çekilirse vadesiz mevduat faizi uygulanır. Mecburi Aylık Yatırım (MAY) hesabı, ÖYAK ana sözleşmesi gereği her üyenin zorunlu olarak para yatırdığı hesap türüdür ve bu hesaplara her yıl 31 Aralık itibarıyla faiz verilir."
+    "id": "sb_kredi_degisken",
+    "baslik": "Değişken Faizli ve Özel Kredi Oranları",
+    "metin": "Değişken faizli Genel Kredi: TL %45, STG %4.00, USD %4.00, EUR %3.50. Özel Krediler: Konut-Arsa STG %3.70, USD %3.70, EUR %3.20. Kampanya STG %3.95, USD %3.95, EUR %3.45. Doğum Günü EUR %2.70. Enerji STG %3.50, USD %3.50, EUR %3.00. Eğitim STG %2.70, USD %2.70, EUR %2.70. MAY Kredisi STG %2.20, EUR %1.20. Çek Hesabı TL %46, STG %5.00, USD %5.00, EUR %4.50. Avans Hesabı TL %45. 13. Maaş Kredisi TL %43, STG %3.95, USD %3.95, EUR %3.45."
   },
   {
-    "id": "kredi-genel",
-    "baslik": "Kredi Hesapları Genel Bilgi",
-    "metin": "ÖYAK üyelerine çeşitli vadelerde kredi imkanı sunar. Kredi başvurusu için Kredi Dilekçesi formunun doldurulması gerekir. Güncel kredi faiz oranları ve taksit hesaplama araçları resmi web sitesinde yer alır."
+    "id": "sb_kredi_esaslar",
+    "baslik": "Kredi ve Avans Hesabı Esasları",
+    "metin": "Avans Hesabı ay sonu maaşından kesilmek üzere verilir, en fazla maaşa yakın bir tutar verilebilir. Kredi Hesabı 1 yıl ve üzeri vadeli borçlanmalardır, matbu borçlanma dilekçesi ile başvuru yapılır. Maaşın 30 katını aşmayan kredi talepleri ilgili şube tarafından değerlendirilir. Maaşın 30 katını aşan talepler Yönetim Kurulu onayına sunulur. Azalan Bakiye Yöntemi uygulanır, erken ödemelerde daha az faiz ödenir. Döviz kredilerde 10 yıl, TL kredilerde 8 yıla kadar vade imkanı mevcuttur."
   },
   {
-    "id": "sigorta",
+    "id": "sb_sigorta",
     "baslik": "Sigorta Hizmetleri",
-    "metin": "ÖYAK üyelerine sigorta hizmetleri sunmaktadır; detaylı bilgi için sigorta sayfası ziyaret edilebilir."
+    "metin": "Her türlü sigorta işlemi araç yangın deprem sigortası vb. yapılmaktadır. Anlaşmalı sigorta şirketleri Zirve Sigorta ve Şeker Sigorta'dır. Sigorta ödemeleri faizsiz olarak 12 taksitte maaştan kesinti yoluyla ödenebilir."
   },
   {
-    "id": "uyelik",
-    "baslik": "Üyelik İşlemleri",
-    "metin": "ÖYAK'a üye olmak için Üyeliğe Başvuru formu doldurulmalıdır. Mevcut üyeler bilgi güncellemesi için Üyelik Güncelleme formunu kullanabilir."
+    "id": "sb_kasa_kiralama",
+    "baslik": "Kasa Kiralama Hizmeti",
+    "metin": "Kıymetli evrak ve ziynet eşyaları için yangın ve hırsızlığa karşı güvenli kasa kiralama hizmeti sunulmaktadır. Küçük Kasa: Depozito 55 STG, Yıllık Kira Bedeli 55 STG. Orta Kasa: Depozito 65 STG, Yıllık Kira Bedeli 65 STG."
   },
   {
-    "id": "mobil-uygulama",
-    "baslik": "ÖYAK Cep Mobil Uygulaması",
-    "metin": "ÖYAK Cep mobil uygulaması Google Play ve App Store üzerinden indirilebilir; üyeler mobil uygulama üzerinden bankacılık işlemlerini takip edebilir."
+    "id": "sb_kredi_karti",
+    "baslik": "Kredi Kartı ve Fatura Ödemeleri",
+    "metin": "Kooperatif Merkez Bankası iş birliği ile tüm dünyada kullanılabilen OPTİMUM kredi kartı verilir. OPTİMUM Kart için hizmet geliri alınmaz. Fatura ödemeleri elektrik telefon Digiturk su faturası emlak vergisi için fatura değerinin yüzde biri oranında hizmet geliri alınır. Diğer kredi kartı ödemeleri için fatura değerinin binde üçü oranında hizmet geliri alınır."
   },
   {
-    "id": "tarihce",
-    "baslik": "ÖYAK Tarihçesi",
-    "metin": "Kıbrıs Türk Öğretmenler Yardımlaşma Kooperatifi Ltd. (ÖYAK), Kıbrıs Türk öğretmenlerine yönelik kurulmuş bir kooperatif bankacılık kuruluşudur. Detaylı tarihçe bilgisi resmi web sitesindeki Tarihçe sayfasında yer alır."
+    "id": "sb_anlasmali_isyerleri",
+    "baslik": "Anlaşmalı İş Yerleri ve Nakit İade Oranları",
+    "metin": "ÖYAK Alışveriş Projesi kapsamında anlaşmalı iş yerlerinde KOOPBANK POS cihazından ÖYAKKART veya Optimum Kart ile ödeme yapıldığında nakit iadesi kazanılır. Kazanılan indirim bir sonraki ayın ilk iş günü hesaba aktarılır. Anlaşmalı iş yerleri: Civisilli Gıda %4 iade, Tel: 0542 884 84 49, Lefkoşa Metehan Kemal Şemiler Cad. Dentwise Dental Clinic %12 iade, Tel: 0539 123 94 73, Lefkoşa Şht. M. Ahmet Ruso Cad. No:153 K.Kaymaklı. Freenet İletişim %16 iade, Tel: 0548 888 64 23, Lefkoşa Yenişehir. Genomesix Beauty %16 iade, Tel: 0539 130 33 60, Girne Çatalköy. Go-Mysteria Beslenme Diyet %8 iade, Tel: 0533 868 45 10, Lefkoşa Marmara Bölgesi. Mağusa Yaşam Hastanesi %16 iade, Tel: 444 11 33, Gazi Mağusa. Merve Mevlanaoğlu Diş Kliniği %12 iade, Tel: 0533 839 75 46, Lefkoşa K.Kaymaklı. Netonline Bilişim %12 iade, Tel: 444 04 33, Lefkoşa. Super Computers %2.4 iade, Tel: 208 07 24, Lefkoşa K.Kaymaklı. Viva Çiçekçilik %4 iade, Tel: 0548 840 82 45, Lefkoşa Yenişehir. Yöntem Tıp Laboratuvarı %20 iade, Tel: 0533 847 05 05, Lefkoşa Göçmenköy. Önder Ltd. Lefkoşa %1.6 iade, Tel: 227 77 70, Sosyal Sigortalar Karşısı. Önder Ltd. Mağusa %1.6 iade, Tel: 365 60 42, Liman Yolu."
+  },
+  {
+    "id": "sb_anlasmali_hastaneler",
+    "baslik": "Anlaşmalı Hastaneler ve Sağlık İndirimleri",
+    "metin": "Mağusa: Mağusa Tıp Merkezi Hastanesi %20 indirim. Kunter Güven Hastanesi %20 indirim. Lefkoşa: Cyprus Life Hospital muayene %20 diğer hizmetler %10 indirim. Özel Başkent Hastanesi muayene %20 diğer hizmetler %10 indirim. Yakın Doğu Hastanesi laboratuvar ilaç ve sarf malzemeleri hariç tüm sağlık hizmetlerinde %15 indirim. Nis Tıp Merkezi laboratuvar hizmetlerinde %25 indirim. Kolan Hastanesi muayene teşhis müdahale laboratuvar ve röntgen uygulamalarında %20 indirim. Memorial Hastanesi muayene kan tahlilleri evde bakım diyetisyen tıbbi beslenme ve wellness hizmetlerinde %20 indirim. Girne: Kamiloğlu Hastanesi genel hastane hizmetleri %20 ameliyatlarda doktor ücreti üzerinden %10 indirim. Türkiye Memorial Sağlık Grubu: Memorial Şişli %10, Memorial Ataşehir %10, Memorial Bahçelievler %15, Memorial Ankara %15, Memorial Antalya %15, Memorial Kayseri %15, Memorial Diyarbakır %15 indirim."
+  },
+  {
+    "id": "sb_yonetim",
+    "baslik": "Yönetim Kurulu",
+    "metin": "ÖYAK Yönetim Kurulu Başkanı Niyazi Çoban, Başkan Yardımcısı Mustafa Türkkal, Genel Müdür Mustafa Oymacı. Yönetim Kurulu Üyeleri: Erkan Bulak, Mustafa Kurtuluş Tel, Nevzat Dalyan, Hatice Şah, Berna Yıldırım, Aziz Selengil, Zekai Töre. ÖYAK 5 Temmuz 1978 tarihinde 64 kurucu öğretmenin imzasıyla kurulmuştur."
+  },
+  {
+    "id": "sb_uyelik",
+    "baslik": "Üyelik Şartları ve Ana Sözleşme",
+    "metin": "Üyelik şartları: Kadrolu veya sözleşmeli öğretmenler, MEB ÖYAK KTOEÖS çalışanları, bunların emeklileri ve vefat eden üyelerin eş ve çocukları üye olabilir. Giriş ücreti asgari ücretin yüzde biridir, en az 25 hisse alınır. MAY yükümlülüğü asgari ücretin yüzde ikisi ile yüzde beşi arasındadır. Sermaye yapısı toplam 5.000.000 TL olup bir ortak en fazla yüzde on hisse sahibi olabilir. Kar dağılımı: yüzde seksen beş Yedek Akçe, yüzde beş Eğitim Sağlık, yüzde beş Temettü, yüzde beş Dinlenme Tesisi Fonu."
+  },
+  {
+    "id": "sb_finansal_tablo",
+    "baslik": "Finansal Tablolar ve Bilanço",
+    "metin": "ÖYAK 30 Haziran 2025 tarihli bilanço özeti: Nakit Değerler 67.017.228 TL, Bankalar 1.974.209.207 TL, Menkul Değerler 769.331.872 TL, Krediler 2.304.750.847 TL, Toplam Aktifler 5.313.549.665 TL, Mevduat 5.080.427.109 TL, Özkaynaklar 69.381.834 TL, Dönem Karı 28.617.380 TL. Gelir tablosu: Faiz Gelirleri 241.092.915 TL, Faiz Giderleri 152.138.681 TL, Net Faiz Geliri 88.954.234 TL, Net Dönem Karı 28.617.380 TL."
+  },
+  {
+    "id": "sb_gizlilik",
+    "baslik": "Gizlilik Politikası",
+    "metin": "Toplanan üye bilgileri sadece başvuru ve kooperatif işlemleri amacıyla kullanılır, üçüncü şahıslarla asla paylaşılmaz. Web sitesinde ve sistemde yer alan tüm metinler görseller ve bilgiler ÖYAK'a aittir."
+  },
+  {
+    "id": "sb_formlar",
+    "baslik": "Formlar Yönlendirmesi",
+    "metin": "Kredi Dilekçesi, Üyeliğe Başvuru, Üyelik Güncelleme ve Gelecek Güvencesi formlarına oyakkoop.com web sitesindeki Formlar bölümünden ulaşabilirsiniz. Bu formların içerik detayları için lütfen web sitesini ziyaret edin veya şubelerimizle iletişime geçin."
+  },
+  {
+    "id": "sb_tv",
+    "baslik": "TV Programları",
+    "metin": "ÖYAK TV Programları hakkında bilgi almak için oyakkoop.com web sitesindeki TV Programları bölümünü ziyaret edebilirsiniz."
   }
 ]
