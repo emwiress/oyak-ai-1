@@ -1,0 +1,13 @@
+flask
+flask-cors
+flask-jwt-extended
+werkzeug
+requests
+chromadb
+gunicorn
+bcrypt
+pymupdf
+pillow
+python-docx
+beautifulsoup4
+lxml
