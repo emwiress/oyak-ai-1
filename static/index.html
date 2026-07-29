@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Asistan Platformu</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f8fafc;color:#1e293b;min-height:100vh}
+
+/* NAV */
+nav{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{font-size:18px;font-weight:700;color:#2563eb;display:flex;align-items:center;gap:8px}
+.nav-logo span{font-size:20px}
+.nav-user{display:flex;align-items:center;gap:10px;font-size:13px;color:#64748b}
+.nav-user strong{color:#1e293b}
+.btn-cikis{background:none;border:1px solid #e2e8f0;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;color:#64748b}
+.btn-cikis:hover{background:#f1f5f9}
+
+/* SAYFA GEÇİŞ */
+.sayfa{display:none}
+.sayfa.aktif{display:block}
+
+/* GİRİŞ / KAYIT */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eff6ff,#f8fafc)}
+.auth-box{background:#fff;border-radius:16px;padding:36px;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.auth-box h2{font-size:22px;font-weight:700;margin-bottom:6px;color:#1e293b}
+.auth-box p{font-size:13px;color:#64748b;margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:6px}
+.form-group input{width:100%;padding:10px 14px;border:1px solid #d1d5db;border-radius:8px;font-size:14px;outline:none;transition:border .15s}
+.form-group input:focus{border-color:#2563eb}
+.btn-primary{width:100%;padding:11px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s}
+.btn-primary:hover{background:#1d4ed8}
+.btn-primary:disabled{background:#93c5fd;cursor:not-allowed}
+.auth-alt{text-align:center;margin-top:16px;font-size:13px;color:#64748b}
+.auth-alt a{color:#2563eb;cursor:pointer;text-decoration:none;font-weight:500}
+.hata-msg{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none}
+
+/* PANEL */
+.panel-layout{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 56px)}
+
+/* SIDEBAR */
+.sidebar{background:#fff;border-right:1px solid #e2e8f0;padding:20px 0}
+.sidebar-baslik{font-size:11px;font-weight:600;color:#94a3b8;padding:0 20px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.asistan-liste{list-style:none}
+.asistan-item{padding:10px 20px;cursor:pointer;font-size:13px;color:#374151;border-left:3px solid transparent;transition:all .15s}
+.asistan-item:hover{background:#f8fafc;color:#2563eb}
+.asistan-item.secili{background:#eff6ff;color:#2563eb;border-left-color:#2563eb;font-weight:600}
+.asistan-item .badge{display:inline-block;background:#dcfce7;color:#16a34a;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:6px}
+.btn-yeni-asistan{margin:16px 20px 0;width:calc(100% - 40px);padding:9px;background:#eff6ff;color:#2563eb;border:1px dashed #93c5fd;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-yeni-asistan:hover{background:#dbeafe}
+
+/* ANA İÇERİK */
+.icerik{padding:28px;overflow-y:auto}
+.icerik-baslik{font-size:20px;font-weight:700;color:#1e293b;margin-bottom:6px}
+.icerik-alt{font-size:13px;color:#64748b;margin-bottom:24px}
+
+/* KART */
+.kart{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:16px}
+.kart-baslik{font-size:14px;font-weight:600;color:#1e293b;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.kart-baslik .icon{font-size:16px}
+
+/* STAT */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px}
+.stat-sayi{font-size:26px;font-weight:700;color:#1e293b}
+.stat-label{font-size:12px;color:#64748b;margin-top:2px}
+.stat-online{color:#16a34a;font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px}
+.stat-online::before{content:'';width:8px;height:8px;background:#16a34a;border-radius:50%;display:inline-block}
+
+/* UPLOAD */
+.drop-zone{border:2px dashed #cbd5e1;border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:12px}
+.drop-zone:hover,.drop-zone.drag{border-color:#2563eb;background:#eff6ff}
+.drop-zone .icon{font-size:32px;margin-bottom:8px}
+.drop-zone p{font-size:13px;color:#64748b}
+.drop-zone small{font-size:11px;color:#94a3b8}
+.btn-grup{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.btn-sm{padding:6px 12px;font-size:12px;border-radius:6px;border:1px solid #d1d5db;background:#fff;cursor:pointer;color:#374151;display:flex;align-items:center;gap:4px}
+.btn-sm:hover{background:#f8fafc;border-color:#2563eb;color:#2563eb}
+.btn-sm input[type=file]{display:none}
+.dosya-listesi{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.dosya-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;font-size:13px}
+.dosya-item .dosya-ad{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#374151}
+.dosya-item .dosya-durum{font-size:11px;color:#16a34a;background:#dcfce7;padding:2px 7px;border-radius:10px}
+.btn-egit{width:100%;padding:11px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-egit:hover{background:#1d4ed8}
+.btn-egit:disabled{background:#93c5fd;cursor:not-allowed}
+
+/* URL FORM */
+.url-form{display:none;margin-bottom:12px}
+.url-form.goster{display:flex;gap:8px}
+.url-form input{flex:1;padding:8px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;outline:none}
+.url-form input:focus{border-color:#2563eb}
+.url-form button{padding:8px 14px;background:#2563eb;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px}
+
+/* METIN FORM */
+.metin-form{margin-bottom:12px}
+.metin-form textarea{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;outline:none;resize:vertical;min-height:80px}
+.metin-form textarea:focus{border-color:#2563eb}
+.metin-form input{width:100%;padding:8px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;outline:none;margin-bottom:6px}
+
+/* WIDGET KODU */
+.widget-kod{background:#1e293b;border-radius:8px;padding:14px;font-family:monospace;font-size:12px;color:#94a3b8;word-break:break-all;margin-bottom:10px;position:relative}
+.widget-kod code{color:#7dd3fc}
+.btn-kopyala{padding:7px 14px;font-size:12px;border-radius:6px;border:1px solid #d1d5db;background:#fff;cursor:pointer;color:#374151}
+.btn-kopyala:hover{background:#f8fafc}
+
+/* KB LİSTE */
+.kb-liste{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto}
+.kb-item{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#f8fafc;border-radius:6px;font-size:12px;color:#374151}
+.kb-item .kb-baslik{flex:1}
+
+/* YENİ ASISTAN FORMU */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;align-items:center;justify-content:center}
+.overlay.goster{display:flex}
+.modal{background:#fff;border-radius:16px;padding:28px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:16px}
+.modal .form-group{margin-bottom:14px}
+.modal-btnler{display:flex;gap:10px;margin-top:20px}
+.btn-iptal{flex:1;padding:10px;background:#f1f5f9;color:#374151;border:none;border-radius:8px;cursor:pointer;font-size:14px}
+.btn-kaydet{flex:2;padding:10px;background:#2563eb;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600}
+
+/* MESAJ */
+.bildirim{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;z-index:999;display:none;animation:slide-up .2s ease}
+@keyframes slide-up{from{transform:translateX(-50%) translateY(20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+@media(max-width:640px){.panel-layout{grid-template-columns:1fr}.sidebar{display:none}.stat-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- GİRİŞ SAYFASI -->
+<div id="sayfa-giris" class="sayfa aktif">
+  <div class="auth-wrap">
+    <div class="auth-box">
+      <h2>🤖 AI Asistan Platformu</h2>
+      <p>Kendi yapay zeka asistanınızı oluşturun</p>
+      <div id="giris-hata" class="hata-msg"></div>
+      <div class="form-group"><label>E-posta</label><input type="email" id="giris-email" placeholder="ornek@sirket.com"/></div>
+      <div class="form-group"><label>Şifre</label><input type="password" id="giris-sifre" placeholder="••••••••"/></div>
+      <button class="btn-primary" onclick="girisYap()">Giriş Yap</button>
+      <p class="auth-alt">Hesabınız yok mu? <a onclick="sayfaGec('kayit')">Kayıt olun</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- KAYIT SAYFASI -->
+<div id="sayfa-kayit" class="sayfa">
+  <div class="auth-wrap">
+    <div class="auth-box">
+      <h2>Hesap Oluştur</h2>
+      <p>Ücretsiz başlayın, istediğiniz zaman yükseltin</p>
+      <div id="kayit-hata" class="hata-msg"></div>
+      <div class="form-group"><label>Ad Soyad</label><input type="text" id="kayit-isim" placeholder="Adınız Soyadınız"/></div>
+      <div class="form-group"><label>E-posta</label><input type="email" id="kayit-email" placeholder="ornek@sirket.com"/></div>
+      <div class="form-group"><label>Şifre</label><input type="password" id="kayit-sifre" placeholder="En az 6 karakter"/></div>
+      <button class="btn-primary" onclick="kayitOl()">Kayıt Ol</button>
+      <p class="auth-alt">Zaten hesabınız var mı? <a onclick="sayfaGec('giris')">Giriş yapın</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL -->
+<div id="sayfa-panel" class="sayfa">
+  <nav>
+    <div class="nav-logo"><span>🤖</span> AI Platform</div>
+    <div class="nav-user">
+      <span>Hoş geldiniz, <strong id="nav-isim"></strong></span>
+      <button class="btn-cikis" onclick="cikis()">Çıkış</button>
+    </div>
+  </nav>
+  <div class="panel-layout">
+    <div class="sidebar">
+      <div class="sidebar-baslik">Asistanlarım</div>
+      <ul class="asistan-liste" id="asistan-liste"></ul>
+      <button class="btn-yeni-asistan" onclick="modalAc()">+ Yeni Asistan</button>
+    </div>
+    <div class="icerik" id="panel-icerik">
+      <div style="text-align:center;padding:60px 20px;color:#94a3b8">
+        <div style="font-size:48px;margin-bottom:16px">🤖</div>
+        <p style="font-size:16px;margin-bottom:8px;color:#374151">Henüz asistan seçilmedi</p>
+        <p style="font-size:13px">Sol menüden bir asistan seçin veya yeni oluşturun</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- YENİ ASISTAN MODAL -->
+<div class="overlay" id="modal-overlay">
+  <div class="modal">
+    <h3>✨ Yeni Asistan Oluştur</h3>
+    <div class="form-group">
+      <label>Asistan Adı</label>
+      <input type="text" id="modal-isim" placeholder="Örn: ÖYAK Müşteri Hizmetleri"/>
+    </div>
+    <div class="form-group">
+      <label>Groq API Anahtarı</label>
+      <input type="password" id="modal-groq" placeholder="gsk_..."/>
+      <small style="font-size:11px;color:#94a3b8;margin-top:4px;display:block">console.groq.com adresinden ücretsiz alabilirsiniz</small>
+    </div>
+    <div class="form-group">
+      <label>Sistem Talimatı</label>
+      <textarea id="modal-sistem" style="width:100%;padding:8px 12px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;resize:vertical;height:80px;outline:none">Sen yardımsever bir yapay zeka asistanısın. SADECE verilen bilgilere dayanarak Türkçe cevap ver.</textarea>
+    </div>
+    <div class="modal-btnler">
+      <button class="btn-iptal" onclick="modalKapat()">İptal</button>
+      <button class="btn-kaydet" onclick="asistanOlustur()">Oluştur</button>
+    </div>
+  </div>
+</div>
+
+<div class="bildirim" id="bildirim"></div>
+
+<script>
+const API = '';
+let TOKEN = localStorage.getItem('token') || '';
+let KULLANICI = JSON.parse(localStorage.getItem('kullanici') || 'null');
+let SECILI_AID = null;
+let DOSYALAR = [];
+
+// ── Başlangıç ──────────────────────────────────────────────────
+if (TOKEN && KULLANICI) {
+  panelGoster();
+} 
+
+function sayfaGec(sayfa) {
+  document.querySelectorAll('.sayfa').forEach(s => s.classList.remove('aktif'));
+  document.getElementById('sayfa-' + sayfa).classList.add('aktif');
+}
+
+// ── Auth ────────────────────────────────────────────────────────
+async function girisYap() {
+  const email = document.getElementById('giris-email').value.trim();
+  const sifre = document.getElementById('giris-sifre').value;
+  const hataEl = document.getElementById('giris-hata');
+  hataEl.style.display = 'none';
+  try {
+    const r = await fetch(API + '/api/giris', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, sifre})});
+    const d = await r.json();
+    if (d.hata) { hataEl.textContent = d.hata; hataEl.style.display = 'block'; return; }
+    TOKEN = d.token;
+    KULLANICI = d.kullanici;
+    localStorage.setItem('token', TOKEN);
+    localStorage.setItem('kullanici', JSON.stringify(KULLANICI));
+    panelGoster();
+  } catch(e) { hataEl.textContent = 'Bağlantı hatası'; hataEl.style.display = 'block'; }
+}
+
+async function kayitOl() {
+  const isim  = document.getElementById('kayit-isim').value.trim();
+  const email = document.getElementById('kayit-email').value.trim();
+  const sifre = document.getElementById('kayit-sifre').value;
+  const hataEl = document.getElementById('kayit-hata');
+  hataEl.style.display = 'none';
+  try {
+    const r = await fetch(API + '/api/kayit', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({isim, email, sifre})});
+    const d = await r.json();
+    if (d.hata) { hataEl.textContent = d.hata; hataEl.style.display = 'block'; return; }
+    TOKEN = d.token;
+    KULLANICI = d.kullanici;
+    localStorage.setItem('token', TOKEN);
+    localStorage.setItem('kullanici', JSON.stringify(KULLANICI));
+    panelGoster();
+  } catch(e) { hataEl.textContent = 'Bağlantı hatası'; hataEl.style.display = 'block'; }
+}
+
+function cikis() {
+  TOKEN = ''; KULLANICI = null;
+  localStorage.removeItem('token');
+  localStorage.removeItem('kullanici');
+  sayfaGec('giris');
+}
+
+// ── Panel ───────────────────────────────────────────────────────
+async function panelGoster() {
+  sayfaGec('panel');
+  document.getElementById('nav-isim').textContent = KULLANICI.isim;
+  const r = await fetch(API + '/api/profil', {headers:{'Authorization':'Bearer '+TOKEN}});
+  const d = await r.json();
+  KULLANICI = {...KULLANICI, ...d};
+  localStorage.setItem('kullanici', JSON.stringify(KULLANICI));
+  asistanListeGoster();
+}
+
+function asistanListeGoster() {
+  const liste = document.getElementById('asistan-liste');
+  const asistanlar = KULLANICI.asistanlar || {};
+  liste.innerHTML = '';
+  Object.values(asistanlar).forEach(a => {
+    const li = document.createElement('li');
+    li.className = 'asistan-item' + (SECILI_AID === a.id ? ' secili' : '');
+    li.innerHTML = a.isim + '<span class="badge">●</span>';
+    li.onclick = () => asistanSec(a.id);
+    liste.appendChild(li);
+  });
+}
+
+async function asistanSec(aid) {
+  SECILI_AID = aid;
+  DOSYALAR = [];
+  document.querySelectorAll('.asistan-item').forEach(el => el.classList.remove('secili'));
+  event && event.currentTarget && event.currentTarget.classList.add('secili');
+  asistanListeGoster();
+
+  const r = await fetch(API + '/api/asistan/' + aid + '/bilgi', {headers:{'Authorization':'Bearer '+TOKEN}});
+  const a = await r.json();
+
+  const sunucu = window.location.origin;
+  const widgetKod = `<script src="${sunucu}/widget/${aid}.js"><\/script>`;
+
+  document.getElementById('panel-icerik').innerHTML = `
+    <div class="icerik-baslik">${a.isim}</div>
+    <div class="icerik-alt">Asistan ID: <code>${aid}</code></div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-sayi">${a.soru_sayisi||0}</div><div class="stat-label">Toplam soru</div></div>
+      <div class="stat"><div class="stat-sayi">${a.kayit_sayisi||0}</div><div class="stat-label">Bilgi parçası</div></div>
+      <div class="stat"><div class="stat-online">Çevrimiçi</div><div class="stat-label">Durum</div></div>
+    </div>
+
+    <div class="kart">
+      <div class="kart-baslik"><span class="icon">📚</span> Bilgi Tabanı & Eğitim</div>
+      
+      <div class="drop-zone" id="drop-zone" onclick="document.getElementById('dosya-input').click()">
+        <div class="icon">📂</div>
+        <p>Dosyaları buraya sürükleyin veya tıklayın</p>
+        <small>PDF, Word (.docx), Resim (JPG/PNG), Metin (.txt) desteklenir</small>
+        <input type="file" id="dosya-input" multiple accept=".pdf,.docx,.txt,.md,.jpg,.jpeg,.png,.webp" style="display:none" onchange="dosyaSec(this)">
+      </div>
+
+      <div class="btn-grup">
+        <button class="btn-sm" onclick="toggleUrl()">🔗 URL Ekle</button>
+        <button class="btn-sm" onclick="toggleMetin()">✏️ Metin Ekle</button>
+      </div>
+
+      <div class="url-form" id="url-form">
+        <input type="url" id="url-input" placeholder="https://ornek.com/sayfa"/>
+        <button onclick="urlEkle()">Ekle</button>
+      </div>
+
+      <div id="metin-form-wrap" style="display:none" class="metin-form">
+        <input type="text" id="metin-baslik" placeholder="Başlık (örn: Fiyat Listesi)"/>
+        <textarea id="metin-icerik" placeholder="Buraya metin yapıştırın..."></textarea>
+        <button class="btn-sm" onclick="metinEkle()" style="background:#eff6ff;border-color:#93c5fd;color:#2563eb">Ekle</button>
+      </div>
+
+      <div class="dosya-listesi" id="dosya-listesi"></div>
+
+      <button class="btn-egit" id="egit-btn" onclick="egitimBaslat()">
+        🧠 Eğitimi Başlat
+      </button>
+    </div>
+
+    <div class="kart">
+      <div class="kart-baslik"><span class="icon">🔌</span> Widget Kodu</div>
+      <div class="widget-kod"><code>${widgetKod.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code></div>
+      <button class="btn-kopyala" onclick="kopyala('${widgetKod.replace(/'/g,"\\'")}')">📋 Kopyala</button>
+      <p style="font-size:12px;color:#94a3b8;margin-top:8px">Bu tek satırı sitenizin &lt;/body&gt; etiketinden önce ekleyin</p>
+    </div>
+
+    ${a.kb && a.kb.length > 0 ? `
+    <div class="kart">
+      <div class="kart-baslik"><span class="icon">📋</span> Mevcut Bilgi Kaynakları (${a.kb.length})</div>
+      <div class="kb-liste">
+        ${a.kb.map(k => `<div class="kb-item"><span class="kb-baslik">${k.baslik}</span></div>`).join('')}
+      </div>
+    </div>` : ''}
+  `;
+
+  // Sürükle bırak
+  const dz = document.getElementById('drop-zone');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag'));
+  dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('drag'); dosyaIsle(e.dataTransfer.files); });
+}
+
+// ── Dosya işlemleri ─────────────────────────────────────────────
+function dosyaSec(input) { dosyaIsle(input.files); }
+
+function dosyaIsle(files) {
+  Array.from(files).forEach(f => {
+    DOSYALAR.push(f);
+    const el = document.createElement('div');
+    el.className = 'dosya-item';
+    el.innerHTML = `<span>📄</span><span class="dosya-ad">${f.name}</span><span class="dosya-durum">Hazır</span>`;
+    document.getElementById('dosya-listesi').appendChild(el);
+  });
+}
+
+function toggleUrl() {
+  const f = document.getElementById('url-form');
+  f.classList.toggle('goster');
+}
+
+function toggleMetin() {
+  const f = document.getElementById('metin-form-wrap');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+
+async function urlEkle() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) return;
+  bildirimGoster('URL ekleniyor...');
+  const r = await fetch(API + '/api/asistan/' + SECILI_AID + '/url-ekle', {
+    method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN},
+    body: JSON.stringify({url})
+  });
+  const d = await r.json();
+  if (d.hata) { bildirimGoster('Hata: ' + d.hata); return; }
+  bildirimGoster('✅ ' + d.mesaj);
+  document.getElementById('url-input').value = '';
+  document.getElementById('url-form').classList.remove('goster');
+  const el = document.createElement('div');
+  el.className = 'dosya-item';
+  el.innerHTML = `<span>🔗</span><span class="dosya-ad">${url}</span><span class="dosya-durum">Eklendi</span>`;
+  document.getElementById('dosya-listesi').appendChild(el);
+}
+
+async function metinEkle() {
+  const baslik  = document.getElementById('metin-baslik').value.trim();
+  const metin   = document.getElementById('metin-icerik').value.trim();
+  if (!metin || !baslik) { bildirimGoster('Başlık ve metin zorunlu'); return; }
+  const r = await fetch(API + '/api/asistan/' + SECILI_AID + '/metin-ekle', {
+    method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN},
+    body: JSON.stringify({baslik, metin})
+  });
+  const d = await r.json();
+  if (d.hata) { bildirimGoster('Hata: ' + d.hata); return; }
+  bildirimGoster('✅ ' + d.mesaj);
+  document.getElementById('metin-baslik').value = '';
+  document.getElementById('metin-icerik').value = '';
+  document.getElementById('metin-form-wrap').style.display = 'none';
+  const el = document.createElement('div');
+  el.className = 'dosya-item';
+  el.innerHTML = `<span>✏️</span><span class="dosya-ad">${baslik}</span><span class="dosya-durum">Eklendi</span>`;
+  document.getElementById('dosya-listesi').appendChild(el);
+}
+
+async function egitimBaslat() {
+  const btn = document.getElementById('egit-btn');
+
+  // Önce dosyaları yükle
+  for (const dosya of DOSYALAR) {
+    btn.textContent = `📤 Yükleniyor: ${dosya.name}`;
+    btn.disabled = true;
+    const fd = new FormData();
+    fd.append('dosya', dosya);
+    fd.append('baslik', dosya.name.replace(/\.[^.]+$/, ''));
+    const r = await fetch(API + '/api/asistan/' + SECILI_AID + '/dosya-yukle', {
+      method:'POST', headers:{'Authorization':'Bearer '+TOKEN}, body: fd
+    });
+    const d = await r.json();
+    if (d.hata) { bildirimGoster('Hata: ' + d.hata); btn.disabled = false; btn.textContent = '🧠 Eğitimi Başlat'; return; }
+  }
+
+  // Eğit
+  btn.textContent = '⚙️ Eğitim devam ediyor...';
+  btn.disabled = true;
+  const r = await fetch(API + '/api/asistan/' + SECILI_AID + '/egit', {
+    method:'POST', headers:{'Authorization':'Bearer '+TOKEN}
+  });
+  const d = await r.json();
+  if (d.hata) { bildirimGoster('Hata: ' + d.hata); btn.disabled = false; btn.innerHTML = '🧠 Eğitimi Başlat'; return; }
+
+  btn.innerHTML = '✅ Eğitim tamamlandı!';
+  btn.style.background = '#16a34a';
+  bildirimGoster('✅ ' + d.mesaj);
+  DOSYALAR = [];
+  setTimeout(() => { btn.disabled = false; btn.innerHTML = '🧠 Eğitimi Başlat'; btn.style.background = ''; }, 3000);
+}
+
+// ── Asistan oluştur ─────────────────────────────────────────────
+function modalAc() { document.getElementById('modal-overlay').classList.add('goster'); }
+function modalKapat() { document.getElementById('modal-overlay').classList.remove('goster'); }
+
+async function asistanOlustur() {
+  const isim   = document.getElementById('modal-isim').value.trim();
+  const groq   = document.getElementById('modal-groq').value.trim();
+  const sistem = document.getElementById('modal-sistem').value.trim();
+  if (!isim || !groq) { bildirimGoster('Asistan adı ve Groq anahtarı zorunlu'); return; }
+  const r = await fetch(API + '/api/asistan/olustur', {
+    method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+TOKEN},
+    body: JSON.stringify({isim, groq_key: groq, sistem_prompt: sistem})
+  });
+  const d = await r.json();
+  if (d.hata) { bildirimGoster('Hata: ' + d.hata); return; }
+  bildirimGoster('✅ ' + d.mesaj);
+  modalKapat();
+  await panelGoster();
+  asistanSec(d.asistan_id);
+}
+
+// ── Yardımcılar ─────────────────────────────────────────────────
+function kopyala(text) {
+  navigator.clipboard.writeText(text).then(() => bildirimGoster('✅ Kopyalandı!'));
+}
+
+function bildirimGoster(msg) {
+  const el = document.getElementById('bildirim');
+  el.textContent = msg;
+  el.style.display = 'block';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.style.display = 'none', 3000);
+}
+
+// Enter tuşu
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('sayfa-giris').classList.contains('aktif')) girisYap();
+  if (e.key === 'Enter' && document.getElementById('sayfa-kayit').classList.contains('aktif')) kayitOl();
+  if (e.key === 'Escape') modalKapat();
+});
+</script>
+</body>
+</html>
